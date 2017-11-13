@@ -8,13 +8,13 @@ import {
 
 const RootRoutes = {
   [screens.Feed]: {
-    screen: FeedScreen,
+    screen: StackNavigator({ init: { screen: FeedScreen } }),
   },
   [screens.Collections]: {
-    screen: CollectionsScreen,
+    screen: StackNavigator({ init: { screen: CollectionsScreen } }),
   },
   [screens.Settings]: {
-    screen: SettingsScreen,
+    screen: StackNavigator({ init: { screen: SettingsScreen } }),
   }
 };
 

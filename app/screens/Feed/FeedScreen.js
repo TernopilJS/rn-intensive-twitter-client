@@ -12,7 +12,7 @@ const FeedScreen = () => (
 );
 
 FeedScreen.navigationOptions = {
-  drawerLabel: 'Feed',
+  title: 'Feed',
 };
 
 export default FeedScreen;
