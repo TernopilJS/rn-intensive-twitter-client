@@ -1,10 +1,9 @@
 import React from 'react';
 import T from 'prop-types';
 import { addNavigationHelpers } from 'react-navigation';
-import { AppLoading } from 'expo';
+import { Font, AppLoading } from 'expo';
 import { withHandlers } from 'recompose';
 import { appOperations } from '../modules/app';
-import loadImages from '../constants/images';
 import Navigator from './RootNavigator';
 
 const NavigatorView = ({
@@ -36,7 +35,11 @@ NavigatorView.propTypes = {
 };
 
 const enhance = withHandlers({
-  asyncJob: props => () => Promise.all([]),
+  asyncJob: () => () => Promise.all([
+    Font.loadAsync({
+      'gill-sans': require('../assets/fonts/GillSans.ttf'), // eslint-disable-line global-require
+    }),
+  ]),
   finishJob: props => () => props.dispatch(appOperations.imagesLoaded(true)),
   jobError: props => error => {
     console.warn(error);
