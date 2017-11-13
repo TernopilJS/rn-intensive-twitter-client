@@ -1,4 +1,5 @@
 export default {
-  SignedIn: 'SignedIn',
+  App: 'App',
   Feed: 'Feed',
+  InitialSetup: 'InitialSetup',
 };

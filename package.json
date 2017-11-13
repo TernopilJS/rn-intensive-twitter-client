@@ -6,7 +6,8 @@
   "private": true,
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "devDependencies": {
-    "react-native-scripts": "^1.6.0"
+    "react-native-scripts": "^1.6.0",
+    "remote-redux-devtools": "^0.5.12"
   },
   "scripts": {
     "start": "react-native-scripts start",
@@ -26,6 +27,7 @@
     "react-redux": "^5.0.6",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
-    "redux-actions": "^2.2.1"
+    "redux-actions": "^2.2.1",
+    "redux-thunk": "^2.2.0"
   }
 }

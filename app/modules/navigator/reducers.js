@@ -8,10 +8,16 @@ const getResetState = (state, screen) =>
   Navigator.router.getStateForAction(getResetAction(screen, undefined, null), state);
 
 const navigatorReducer = (state, action) => {
-  switch (action.type) {
-  default:
-    return Navigator.router.getStateForAction(action, state);
+  if (action.type === appTypes.INITIALIZED) {
+    if (action.payload) {
+      return getResetState(state, screens.App);
+    }
+
+    return getResetState(state, screens.InitialSetup);
   }
+
+  const newState = Navigator.router.getStateForAction(action, state);
+  return (newState || state);
 };
 
 export default navigatorReducer;

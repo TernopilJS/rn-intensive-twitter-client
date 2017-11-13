@@ -3,6 +3,7 @@ import types from './types';
 
 const initialState = {
   isImagesLoaded: false,
+  initialized: false,
 };
 
 const mergeIn = (stateChange) =>
