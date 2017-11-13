@@ -6,7 +6,9 @@ import {
 } from 'react-native';
 import s from './styles';
 
-const FeedScreen = () => (
+const FeedScreen = ({
+  loading,
+}) => (
   <View>
     <Text>Hello from react native</Text>
   </View>
