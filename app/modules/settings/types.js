@@ -1,1 +1,3 @@
-export const SET_PROP = 'settings/SET_PROP';
+export default {
+  SET_PROP: 'SET_PROP',
+};

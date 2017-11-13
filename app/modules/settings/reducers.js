@@ -1,18 +1,14 @@
-import R from 'ramda';
-import * as types from './types';
+import { handleActions } from 'redux-actions';
 
-const INITIAL_STATE = {
+import { mergeIn } from '../../utils/stateHelpers';
+import types from './types';
+
+const initialState = {
   twitterToken: null,
 };
 
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case types.SET_PROP:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const settingsReducer = handleActions({
+  [types.SET_PROP]: mergeIn(action => action.payload),
+}, initialState);
+
+export default settingsReducer;

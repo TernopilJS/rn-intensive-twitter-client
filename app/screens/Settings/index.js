@@ -8,7 +8,7 @@ const authorize = ({ twitterToken, setSettingsProps }) => () => {
   // TODO: check Twitter Token
 
   setSettingsProps({ twitterToken });
-}
+};
 
 const mapDispatchToProps = {
   ...settingsOperations,
@@ -16,7 +16,7 @@ const mapDispatchToProps = {
 
 const enhance = compose(
   connect(null, mapDispatchToProps),
-  withState('twitterToken', 'setTwitterToken', null),
+  withState('twitterToken', 'setTwitterToken', 'sda'),
   withHandlers({ authorize }),
 );
 
