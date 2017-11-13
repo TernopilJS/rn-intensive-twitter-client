@@ -7,12 +7,12 @@ import s from './styles';
 
 const FeedScreen = () => (
   <View>
-    <Text>Hello from react native</Text>
+    <Text>Hello from FeedScreen</Text>
   </View>
 );
 
 FeedScreen.navigationOptions = {
-  title: 'RN',
+  drawerLabel: 'Feed',
 };
 
 export default FeedScreen;

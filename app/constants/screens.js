@@ -1,5 +1,7 @@
 export default {
+  InitialSetup: 'InitialSetup',
   App: 'App',
   Feed: 'Feed',
-  InitialSetup: 'InitialSetup',
+  Settings: 'Settings',
+  Collections: 'Collections',
 };
