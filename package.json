@@ -41,6 +41,7 @@
     "ramda": "^0.25.0",
     "react": "16.0.0-beta.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
+    "react-native-modal": "^4.1.1",
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",
     "recompose": "^0.26.0",
