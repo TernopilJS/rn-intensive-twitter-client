@@ -1,20 +1,19 @@
 import React from 'react';
 import {
   View,
-  Text,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const FeedScreen = ({
-  loading,
-}) => (
+import Text from '../../components/Text';
+
+const CollectionsScreen = () => (
   <View>
-    <Text>Hello from FeedScreen</Text>
+    <Text>Hello from CollectionsScreen</Text>
   </View>
 );
 
-FeedScreen.navigationOptions = ({ navigation }) => ({
-  title: 'Feed',
+CollectionsScreen.navigationOptions = ({ navigation }) => ({
+  title: 'Collections',
   headerLeft: <MaterialIcons
     name='menu'
     size={35}
@@ -22,4 +21,4 @@ FeedScreen.navigationOptions = ({ navigation }) => ({
   />,
 });
 
-export default FeedScreen;
+export default CollectionsScreen;

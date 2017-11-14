@@ -1,0 +1,44 @@
+{
+    "extends": "airbnb",
+    "globals": { "fetch": false },
+    "env": {
+      "jest": true
+    },
+    "plugins": ["react", "react-native"],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".android.js", ".ios.js"]
+        }
+      }
+    },
+    "rules": {
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
+      "import/prefer-default-export": 0,
+      "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+      "no-underscore-dangle": 0,
+      "no-use-before-define": 0,
+      "no-mixed-operators": 0,
+      "no-param-reassign": ["error", { "props": false }],
+      "func-names": 0,
+      "arrow-parens": 0,
+      "no-confusing-arrow": 0,
+      "jsx-a11y/href-no-hash": 0,
+      "jsx-quotes": ["warn", "prefer-single"],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/forbid-prop-types": 0,
+      "react/require-default-props": 0,
+      "react-native/no-unused-styles": 2,
+      "react-native/split-platform-components": 0,
+      "react-native/no-inline-styles": 2,
+      "react-native/no-color-literals": 2
+    }
+  }
+  

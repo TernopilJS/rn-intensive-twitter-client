@@ -1,10 +1,24 @@
 import { StackNavigator } from 'react-navigation';
+
 import screens from '../constants/screens';
-import SignedInNavigator from './SignedInNavigator';
+import { SettingsScreen } from '../screens';
+import AppNavigator from './AppNavigator';
+
 
 const Routes = {
-  [screens.SignedIn]: {
-    screen: SignedInNavigator,
+  [screens.InitialSetup]: {
+    screen: StackNavigator({
+      initial: {
+        screen: SettingsScreen,
+        navigationOptions: {
+          title: 'Initial setup',
+          headerLeft: null,
+        },
+      },
+    }),
+  },
+  [screens.App]: {
+    screen: AppNavigator,
   },
 };
 

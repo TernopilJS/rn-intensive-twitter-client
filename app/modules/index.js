@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import app from './app';
 import navigator from './navigator';
+import settings from './settings';
 
 const appReducer = combineReducers({
   app,
   navigator,
+  settings,
 });
 
 export default (state, action) => {
