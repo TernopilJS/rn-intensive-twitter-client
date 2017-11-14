@@ -2,9 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  Button,
 } from 'react-native';
-import s from './styles';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const FeedScreen = ({
   loading,
@@ -14,8 +13,13 @@ const FeedScreen = ({
   </View>
 );
 
-FeedScreen.navigationOptions = {
+FeedScreen.navigationOptions = ({ navigation }) => ({
   title: 'Feed',
-};
+  headerLeft: <MaterialIcons
+    name='menu'
+    size={35}
+    onPress={() => navigation.navigate('DrawerOpen')}
+  />,
+});
 
 export default FeedScreen;
