@@ -1,25 +1,41 @@
 import React from 'react';
+import T from 'prop-types';
 import {
   View,
-  Text,
+  TextInput,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { headerStyle } from '../../styles';
+import s from './styles';
 
 const FeedScreen = ({
-  loading,
+  setSearch,
+  searchValue,
 }) => (
-  <View>
-    <Text>Hello from FeedScreen</Text>
+  <View style={s.container}>
+    <TextInput
+      placeholder='Search'
+      underlineColorAndroid='white'
+      value={searchValue}
+      onChangeText={setSearch}
+      style={[s.textInput]}
+    />
   </View>
 );
 
 FeedScreen.navigationOptions = ({ navigation }) => ({
-  title: 'Feed',
+  title: 'Test',
   headerLeft: <MaterialIcons
     name='menu'
     size={35}
     onPress={() => navigation.navigate('DrawerOpen')}
   />,
+  ...headerStyle,
 });
+
+FeedScreen.propTypes = {
+  setSearch: T.func,
+  searchValue: T.string,
+};
 
 export default FeedScreen;

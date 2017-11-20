@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { compose, withState, withProps } from 'recompose';
-import { withLoadingModal, withLoadingState } from '../../utils/enhancers';
+import { compose, withState, hoistStatics } from 'recompose';
 import FeedScreen from './FeedScreen';
 
 const enhance = compose(
   connect(),
+  withState('searchValue', 'setSearch', ''),
 );
 
-export default enhance(FeedScreen);
+export default hoistStatics(enhance)(FeedScreen);

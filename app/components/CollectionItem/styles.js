@@ -3,15 +3,10 @@ import { colors } from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  textInput: {
+    height: 52,
+    paddingLeft: 16,
+    justifyContent: 'center',
     backgroundColor: colors.white,
-    borderRadius: 10,
-    paddingLeft: 10,
-    paddingVertical: '2%',
-    marginBottom: 20,
-    marginTop: 4,
   },
 });
 

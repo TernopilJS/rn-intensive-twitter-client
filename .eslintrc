@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": "airbnb",
     "globals": { "fetch": false },
     "env": {
@@ -41,4 +42,3 @@
       "react-native/no-color-literals": 2
     }
   }
-  

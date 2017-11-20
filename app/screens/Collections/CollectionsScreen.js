@@ -3,12 +3,14 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import CollectionItem from '../../components/CollectionItem';
+// import Text from '../../components/Text';
+import s from './styles';
 
-import Text from '../../components/Text';
 
 const CollectionsScreen = () => (
-  <View>
-    <Text>Hello from CollectionsScreen</Text>
+  <View style={s.container}>
+    <CollectionItem text='Elon Musk' />
   </View>
 );
 
