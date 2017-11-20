@@ -7,6 +7,7 @@ import {
   TextInput,
 } from 'react-native';
 import s from './styles';
+import { headerStyle } from '../../styles';
 
 const SettingsScreen = ({ twitterToken, setTwitterToken, authorize }) => (
   <View style={s.container}>
@@ -35,6 +36,7 @@ SettingsScreen.propTypes = {
 
 SettingsScreen.navigationOptions = {
   title: 'Settings',
+  ...headerStyle,
 };
 
 export default SettingsScreen;

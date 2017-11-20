@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import CollectionItem from '../../components/CollectionItem';
+import { headerStyle } from '../../styles';
 // import Text from '../../components/Text';
 import s from './styles';
 
@@ -21,6 +22,7 @@ CollectionsScreen.navigationOptions = ({ navigation }) => ({
     size={35}
     onPress={() => navigation.navigate('DrawerOpen')}
   />,
+  ...headerStyle,
 });
 
 export default CollectionsScreen;

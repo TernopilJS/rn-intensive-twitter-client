@@ -1,6 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
-import { TouchableNativeFeedback } from 'react-native';
+import { TouchableNativeFeedback, View } from 'react-native';
 
 const Button = ({
   onPress,
@@ -9,9 +9,10 @@ const Button = ({
 }) => (
   <TouchableNativeFeedback
     onPress={onPress}
-    style={style}
   >
-    {children}
+    <View style={style}>
+      {children}
+    </View>
   </TouchableNativeFeedback>
 );
 
