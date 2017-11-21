@@ -51,6 +51,7 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
+    "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0"
   }
 }
