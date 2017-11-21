@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { compose, withHandlers, withState, withPropsOnChange } from 'recompose';
+import { compose, withHandlers, withState, withPropsOnChange, hoistStatics } from 'recompose';
 import R from 'ramda';
 
 import SettingsScreen from './SettingsScreen';
@@ -25,4 +25,4 @@ const enhance = compose(
   withHandlers({ authorize }),
 );
 
-export default enhance(SettingsScreen);
+export default hoistStatics(enhance)(SettingsScreen);
