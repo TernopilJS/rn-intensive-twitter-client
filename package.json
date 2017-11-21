@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.2.0",
+    "buffer": "^5.0.8",
     "expo": "^22.0.0",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",

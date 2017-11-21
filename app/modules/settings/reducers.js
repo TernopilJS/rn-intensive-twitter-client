@@ -4,7 +4,9 @@ import { mergeIn } from '../../utils/stateHelpers';
 import types from './types';
 
 const initialState = {
-  twitterToken: null,
+  consumerKey: null,
+  consumerSecret: null,
+  bearerToken: null,
 };
 
 const settingsReducer = handleActions({

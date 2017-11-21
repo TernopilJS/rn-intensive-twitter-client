@@ -6,18 +6,34 @@ import {
   Button,
   TextInput,
 } from 'react-native';
+
 import s from './styles';
 import { headerStyle } from '../../styles';
 
-const SettingsScreen = ({ twitterToken, setTwitterToken, authorize }) => (
+const SettingsScreen = ({
+  consumerKey,
+  consumerSecret,
+  setConsumerKey,
+  setConsumerSecret,
+  authorize,
+}) => (
   <View style={s.container}>
-    <Text style={s.text}>Hello from SettingsScreen</Text>
 
+    <Text>Consumer key</Text>
     <TextInput
-      placeholder='Type token here'
+      placeholder='Key'
       underlineColorAndroid='white'
-      value={twitterToken}
-      onChangeText={setTwitterToken}
+      value={consumerKey}
+      onChangeText={setConsumerKey}
+      style={[s.textInput]}
+    />
+
+    <Text>Consumer secret</Text>
+    <TextInput
+      placeholder='Secret'
+      underlineColorAndroid='white'
+      value={consumerSecret}
+      onChangeText={setConsumerSecret}
       style={[s.textInput]}
     />
 
@@ -29,8 +45,10 @@ const SettingsScreen = ({ twitterToken, setTwitterToken, authorize }) => (
 );
 
 SettingsScreen.propTypes = {
-  twitterToken: T.string,
-  setTwitterToken: T.func,
+  consumerKey: T.string,
+  setConsumerKey: T.func,
+  consumerSecret: T.string,
+  setConsumerSecret: T.func,
   authorize: T.func,
 };
 
