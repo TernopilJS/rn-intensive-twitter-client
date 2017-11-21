@@ -9,10 +9,8 @@ import { appOperations } from '../modules/app';
 import Navigator from './RootNavigator';
 import store from '../store';
 
-let persist = null;
-
 const createPersist = () => new Promise((res) => {
-  persist = persistStore(store, {}, res);
+  persistStore(store, {}, res);
   // persist.purge();
 });
 
@@ -45,15 +43,14 @@ NavigatorView.propTypes = {
 };
 
 const enhance = withHandlers({
-  asyncJob: () => () => {
-    Promise.all([
+  asyncJob: () => async () => {
+    await Promise.all([
       Font.loadAsync({
         'gill-sans': require('../assets/fonts/GillSans.ttf'), // eslint-disable-line global-require
       }),
       createPersist(),
     ]);
 
-    // ???
     store.dispatch(appOperations.initialize());
   },
   finishJob: props => () => props.dispatch(appOperations.imagesLoaded(true)),

@@ -1,13 +1,11 @@
-import { imagesLoaded, initialization } from './actions';
+import { imagesLoaded, initialized } from './actions';
+import { INITIALIZED } from './types';
 
 export const initialize = () => async (dispatch, getState) => {
   const { bearerToken } = getState().settings;
-console.log('TOKEN EXISTS???', getState().settings);
+  
   if (bearerToken) {
-    console.log('EXISTS!!');
-
-    // TODO: dispatch Sign_in!
-    // dispatch();
+    dispatch(initialized(true));
   }
 };
 
