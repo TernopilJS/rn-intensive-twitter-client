@@ -22,4 +22,4 @@ const Routes = {
   },
 };
 
-export default StackNavigator(Routes, { initialRouteName: screens.App, headerMode: 'none' });
+export default StackNavigator(Routes, { headerMode: 'none' });
