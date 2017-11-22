@@ -22,8 +22,10 @@ async function getBearerToken(consumerKey, consumerSecret) {
 }
 
 const authorize = ({ consumerKey, consumerSecret, setSettingsProps }) => async () => {
-  const key = consumerKey.trim();
-  const secret = consumerSecret.trim();
+  // const key = consumerKey.trim();
+  // const secret = consumerSecret.trim();
+  const key = 'DZuyJcUpiVs2QsAjFldfhwAL0';
+  const secret = 'i0FrjQC5s92RS35vpl5kVL7EdVkscALHnJ25qdkV7FCkbjsnGl';
 
   const bearerResponse = await getBearerToken(key, secret);
   

@@ -4,4 +4,6 @@ export default {
   black: 'black',
   gray: 'gray',
   transparent: 'transparent',
+  accentText: 'black',
+  secondaryText: 'gray',
 };
