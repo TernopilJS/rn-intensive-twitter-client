@@ -6,4 +6,5 @@ export default {
   transparent: 'transparent',
   accentText: 'black',
   secondaryText: 'gray',
+  border: '#e8e8e8',
 };

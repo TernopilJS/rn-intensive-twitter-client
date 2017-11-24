@@ -11,7 +11,7 @@ let store = null; // eslint-disable-line
 const config = {
   key: 'root',
   storage,
-  whitelist: ['settings'],
+  whitelist: ['settings', 'collections'],
 };
 
 const reducer = persistCombineReducers(config, appReducer);

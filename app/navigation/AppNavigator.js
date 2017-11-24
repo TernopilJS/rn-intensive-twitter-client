@@ -18,11 +18,11 @@ const rootRoutes = {
   },
   [screens.Settings]: {
     screen: StackNavigator({ init: { screen: SettingsScreen } }),
-  }
+  },
 };
 
 const drawerSettings = {
-  contentComponent: props => <Drawer />,
+  contentComponent: props => <Drawer {...props} />,
 };
 
 export default DrawerNavigator(rootRoutes, drawerSettings);

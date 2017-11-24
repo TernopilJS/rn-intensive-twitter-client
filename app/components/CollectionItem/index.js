@@ -7,7 +7,7 @@ import Button from '../Button';
 import s from './styles';
 
 const CollectionItem = ({
-  text,
+  collectionName,
   onPress,
   rightButtons,
 }) => (
@@ -16,18 +16,18 @@ const CollectionItem = ({
       onPress={onPress}
       style={s.container}
     >
-      <Text style={s.text}>{text}</Text>
+      <Text style={s.text}>{collectionName}</Text>
     </Button>
   </SwipeOut>
 );
 
 CollectionItem.propTypes = {
-  text: T.string,
+  collectionName: T.string,
   onPress: T.func,
   remove: T.func, // eslint-disable-line
   rightButtons: T.array,
 };
 
 export default withProps(props => ({
-  rightButtons: [{ text: 'Delete', onPress: props.remove }],
+  rightButtons: [{ text: 'Delete', onPress: () => props.remove(props.id) }],
 }))(CollectionItem);

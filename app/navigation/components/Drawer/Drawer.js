@@ -1,27 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { DrawerItems, SafeAreaView } from 'react-navigation';
 import s from './styles';
-import { SimpleItem } from '../../../components';
+// import { SimpleItem } from '../../../components';
 
-const Drawer = () => (
+const Drawer = (props) => (
   <View style={s.root}>
-    <View>
-      <SimpleItem
-        containerStyle={s.header}
-        title="Feed"
-        titleStyle={s.headerTitle}
-      />
-      <SimpleItem
-        containerStyle={s.header}
-        title="Collections"
-        titleStyle={s.headerTitle}
-      />
-      <SimpleItem
-        containerStyle={s.header}
-        title="Settings"
-        titleStyle={s.headerTitle}
-      />
-    </View>
+    <SafeAreaView style={s.root} forceInset={{ top: 'always', horizontal: 'never' }}>
+      <View>
+        <DrawerItems {...props} />
+      </View>
+    </SafeAreaView>
   </View>
 );
 
