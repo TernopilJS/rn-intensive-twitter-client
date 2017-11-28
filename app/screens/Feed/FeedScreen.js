@@ -3,11 +3,12 @@ import T from 'prop-types';
 import {
   View,
   TextInput,
-  ScrollView,
-  RefreshControl,
+  FlatList,
 } from 'react-native';
+import R from 'ramda';
 import { MaterialIcons } from '@expo/vector-icons';
 import TweetItem from '../../components/TweetItem';
+import Separator from '../../components/Separator';
 import { headerStyle } from '../../styles';
 import s from './styles';
 
@@ -30,16 +31,19 @@ const FeedScreen = ({
       style={[s.textInput]}
     />
 
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-        />
-      }
-    >
-      {tweets.length > 0 ? tweets.map(t => <TweetItem key={t.id} addToCollection={addToCollection(t)} {...t} />) : null}
-    </ScrollView>
+    <FlatList
+      data={tweets}
+      renderItem={({ item }) => <TweetItem addToCollection={addToCollection(item)} {...item} />}
+      keyExtractor={R.prop('id')}
+      refreshing={refreshing}
+      ItemSeparatorComponent={() => (
+        <Separator small />
+      )}
+      ListFooterComponent={() => (
+        <Separator withBorderTop withBorderBottom={false} />
+      )}
+      onRefresh={onRefresh}
+    />
   </View>
 );
 
@@ -58,6 +62,9 @@ FeedScreen.propTypes = {
   searchValue: T.string,
   tweets: T.array,
   addToCollection: T.func,
+  refreshing: T.bool,
+  onRefresh: T.func,
+  searchTweets: T.func,
 };
 
 export default FeedScreen;

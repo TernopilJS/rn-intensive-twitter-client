@@ -2,11 +2,9 @@ import React from 'react';
 import T from 'prop-types';
 import {
   View,
-  TextInput,
-  ScrollView,
-  RefreshControl,
+  FlatList,
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import R from 'ramda';
 import TweetItem from '../../components/TweetItem';
 import { headerStyle } from '../../styles';
 import s from './styles';
@@ -14,19 +12,25 @@ import s from './styles';
 const CollectionScreen = ({
   collection,
   removeFromCollection,
-}) => (
-  <View style={s.container}>
+}) => {
+  const tweets = collection.tweetsIds.map(t => collection[t]);
 
-    <ScrollView>
-      {collection.tweetsIds.length > 0 ? collection.tweetsIds.map(t => {
-          const tweetObj = collection[t];
-          
-          return (<TweetItem key={t} isCollection removeFromCollection={removeFromCollection(collection.id)} {...tweetObj} />);
-      }) : null}
-    </ScrollView>
-
-  </View>
-);
+  return (
+    <View style={s.container}>
+      <FlatList
+        data={tweets}
+        renderItem={({ item }) => (
+          <TweetItem
+            {...item}
+            isCollection // eslint-disable-line
+            removeFromCollection={removeFromCollection(collection.id)}
+          />
+        )}
+        keyExtractor={R.prop('id')}
+      />
+    </View>
+  );
+};
 
 CollectionScreen.navigationOptions = ({ navigation }) => ({
   title: navigation.state.params.collection.collectionName,
@@ -34,6 +38,7 @@ CollectionScreen.navigationOptions = ({ navigation }) => ({
 });
 
 CollectionScreen.propTypes = {
+  collection: T.object,
   collectionTweets: T.array,
   removeFromCollection: T.func,
 };

@@ -18,7 +18,10 @@ const rootRoutes = {
     }),
   },
   [screens.Collections]: {
-    screen: StackNavigator({ init: { screen: CollectionsScreen } }),
+    screen: StackNavigator({
+      init: { screen: CollectionsScreen },
+      [screens.Collection]: { screen: CollectionScreen },
+    }),
   },
   [screens.Settings]: {
     screen: StackNavigator({ init: { screen: SettingsScreen } }),

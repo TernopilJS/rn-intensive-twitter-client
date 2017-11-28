@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import T from 'prop-types';
-import { compose, withState, withProps } from 'recompose';
+import { compose, withState, withProps, withHandlers } from 'recompose';
 import { Text, View, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
 import Modal from 'react-native-modal';
 import moment from 'moment';
@@ -9,7 +9,6 @@ import { Entypo } from '@expo/vector-icons';
 import Avatar from '../Avatar';
 import { colors } from '../../styles';
 import s from './styles';
-import { addCollection } from '../../modules/collections/actions';
 
 const calendar = {
   sameDay: 'H:mm',
@@ -26,7 +25,6 @@ const TweetItem = ({
   displayName,
   userName,
   avatar,
-  id,
   addToCollection,
   removeFromCollection,
   showModal,
@@ -59,14 +57,7 @@ const TweetItem = ({
       </View>
       <View style={s.buttonsContainer}>
 
-        <TouchableWithoutFeedback onPress={() => {
-          console.log('TOUCH', removeFromCollection);
-          if (removeFromCollection) {
-            removeFromCollection(id);
-          } else {
-            setShowModal(true);
-          }
-        }}>
+        <TouchableWithoutFeedback onPress={removeFromCollection}>
           <View style={s.button}>
             <Text style={s.buttonText}>
               {isCollection ? 'Remove from collection' : 'Add to collection'}
@@ -82,15 +73,11 @@ const TweetItem = ({
       </View>
     </View>
 
-    <Modal isVisible={showModal}>
-       <View style={s.modalContent}>
+    <Modal onBackdropPress={() => setShowModal(false)} isVisible={showModal}>
+      <View style={s.modalContent}>
         <Text>Choose collection</Text>
         {collections.collectionIds && collections.collectionIds.map(c => (
-          <TouchableHighlight key={c} onPress={() => {
-            addToCollection(collections.collections[c].id);
-
-            setShowModal(false);
-          }}>
+          <TouchableHighlight key={c} onPress={() => addToCollection(c)}>
             <Text>{collections.collections[c].collectionName}</Text>
           </TouchableHighlight>
         ))}
@@ -101,6 +88,9 @@ const TweetItem = ({
 );
 
 TweetItem.propTypes = {
+  showModal: T.bool,
+  setShowModal: T.func,
+  collections: T.object,
   avatar: T.string,
   text: T.string,
   createdAt: T.string,
@@ -127,6 +117,20 @@ const enhance = compose(
     addToCollection: props.addToCollection,
     removeFromCollection: props.removeFromCollection,
   })),
+  withHandlers({
+    addToCollection: props => c => {
+      props.addToCollection(props.collections.collections[c].id);
+
+      props.setShowModal(false);
+    },
+    removeFromCollection: props => () => {
+      if (props.removeFromCollection) {
+        props.removeFromCollection(props.id);
+      } else {
+        props.setShowModal(true);
+      }
+    },
+  }),
 );
 
 export default enhance(TweetItem);
