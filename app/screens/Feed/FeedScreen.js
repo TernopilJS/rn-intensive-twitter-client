@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import TweetItem from '../../components/TweetItem';
@@ -13,7 +14,11 @@ import s from './styles';
 const FeedScreen = ({
   setSearch,
   searchValue,
+  searchTweets,
   tweets,
+  addToCollection,
+  refreshing,
+  onRefresh,
 }) => (
   <View style={s.container}>
     <TextInput
@@ -21,13 +26,19 @@ const FeedScreen = ({
       underlineColorAndroid='white'
       value={searchValue}
       onChangeText={setSearch}
+      onSubmitEditing={searchTweets}
       style={[s.textInput]}
     />
 
-    <ScrollView>
-      <TweetItem
-        {...tweets[0]}
-      />
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
+    >
+      {tweets.length > 0 ? tweets.map(t => <TweetItem key={t.id} addToCollection={addToCollection(t)} {...t} />) : null}
     </ScrollView>
   </View>
 );
@@ -46,6 +57,7 @@ FeedScreen.propTypes = {
   setSearch: T.func,
   searchValue: T.string,
   tweets: T.array,
+  addToCollection: T.func,
 };
 
 export default FeedScreen;

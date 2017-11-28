@@ -1,12 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import T from 'prop-types';
-import { withProps } from 'recompose';
-import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { compose, withState, withProps } from 'recompose';
+import { Text, View, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import Modal from 'react-native-modal';
 import moment from 'moment';
 import { Entypo } from '@expo/vector-icons';
 import Avatar from '../Avatar';
 import { colors } from '../../styles';
 import s from './styles';
+import { addCollection } from '../../modules/collections/actions';
 
 const calendar = {
   sameDay: 'H:mm',
@@ -23,11 +26,15 @@ const TweetItem = ({
   displayName,
   userName,
   avatar,
+  id,
   addToCollection,
+  removeFromCollection,
+  showModal,
+  setShowModal,
+  collections,
+  isCollection,
 }) => (
-  <View
-    style={s.container}
-  >
+  <View style={s.container}>
     <View style={s.left}>
       <Avatar source={avatar} />
     </View>
@@ -51,10 +58,18 @@ const TweetItem = ({
         </Text>
       </View>
       <View style={s.buttonsContainer}>
-        <TouchableWithoutFeedback onPress={addToCollection}>
+
+        <TouchableWithoutFeedback onPress={() => {
+          console.log('TOUCH', removeFromCollection);
+          if (removeFromCollection) {
+            removeFromCollection(id);
+          } else {
+            setShowModal(true);
+          }
+        }}>
           <View style={s.button}>
             <Text style={s.buttonText}>
-              Add to collection
+              {isCollection ? 'Remove from collection' : 'Add to collection'}
             </Text>
             <Entypo
               name='add-to-list'
@@ -66,6 +81,22 @@ const TweetItem = ({
         </TouchableWithoutFeedback>
       </View>
     </View>
+
+    <Modal isVisible={showModal}>
+       <View style={s.modalContent}>
+        <Text>Choose collection</Text>
+        {collections.collectionIds && collections.collectionIds.map(c => (
+          <TouchableHighlight key={c} onPress={() => {
+            addToCollection(collections.collections[c].id);
+
+            setShowModal(false);
+          }}>
+            <Text>{collections.collections[c].collectionName}</Text>
+          </TouchableHighlight>
+        ))}
+      </View>
+    </Modal>
+
   </View>
 );
 
@@ -76,12 +107,26 @@ TweetItem.propTypes = {
   displayName: T.string,
   userName: T.string,
   addToCollection: T.func,
+  removeFromCollection: T.func,
+  isCollection: T.bool,
 };
 
-export default withProps(props => ({
-  avatar: props.user.profile_image_url,
-  createdAt: moment(new Date(props.created_at)).calendar(null, calendar),
-  userName: props.user.name,
-  displayName: props.user.screen_name,
-  addToCollection: () => {},
-}))(TweetItem);
+const mapStateToProps = state => ({
+  collections: state.collections,
+});
+
+const enhance = compose(
+  connect(mapStateToProps),
+  withState('showModal', 'setShowModal', false),
+  withProps(props => ({
+    avatar: props.user.profile_image_url,
+    createdAt: moment(new Date(props.created_at)).calendar(null, calendar),
+    userName: props.user.name,
+    displayName: props.user.screen_name,
+    id: props.id,
+    addToCollection: props.addToCollection,
+    removeFromCollection: props.removeFromCollection,
+  })),
+);
+
+export default enhance(TweetItem);

@@ -17,17 +17,20 @@ const initialState = {
 };
 
 const authReducer = handleActions({
-  [types.ADD_TO_COLLECTION]: mergeIn((action, state) => ({
-    collections: {
-      ...state.collections,
-      [action.payload.collectionId]: {
-        ...state.collections[action.payload.collectionId],
-        tweetsIds: state.collections[action.payload.collectionId]
-          .tweetsIds.concat(action.payload.tweet.id),
-        [action.payload.tweet.id]: action.payload.tweet,
+  [types.ADD_TO_COLLECTION]: mergeIn((action, state) => {
+console.log('IN REDUCER ADD_TO_COL', action);
+    return {
+      collections: {
+        ...state.collections,
+        [action.payload.collectionId]: {
+          ...state.collections[action.payload.collectionId],
+          tweetsIds: state.collections[action.payload.collectionId]
+            .tweetsIds.concat(action.payload.tweet.id),
+          [action.payload.tweet.id]: action.payload.tweet,
+        },
       },
-    },
-  })),
+    };
+  }),
   [types.REMOVE_COLLECTION]: mergeIn((action, state) => ({
     collectionIds: state.collectionIds.filter(i => i !== action.payload),
   })),
@@ -46,16 +49,20 @@ const authReducer = handleActions({
       },
     };
   }),
-  [types.REMOVE_FROM_COLLECTION]: mergeIn((action, state) => ({
-    collections: {
-      ...state.collections,
-      [action.payload.collectionId]: {
-        ...state.collections[action.payload.collectionId],
-        tweetsIds: state.collections[action.payload.collectionId]
-          .tweetsIds.filter(i => i !== action.payload.tweetId),
+  [types.REMOVE_FROM_COLLECTION]: mergeIn((action, state) => {
+    console.log('IN REMOVE', action);
+
+    return {
+      collections: {
+        ...state.collections,
+        [action.payload.collectionId]: {
+          ...state.collections[action.payload.collectionId],
+          tweetsIds: state.collections[action.payload.collectionId]
+            .tweetsIds.filter(i => i !== action.payload.tweetId),
+        },
       },
-    },
-  })),
+    };
+  }),
 }, initialState);
 
 export default authReducer;

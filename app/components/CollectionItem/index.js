@@ -30,4 +30,5 @@ CollectionItem.propTypes = {
 
 export default withProps(props => ({
   rightButtons: [{ text: 'Delete', onPress: () => props.remove(props.id) }],
+  onPress: props.onPress,
 }))(CollectionItem);

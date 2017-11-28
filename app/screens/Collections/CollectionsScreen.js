@@ -26,6 +26,7 @@ const CollectionsScreen = ({
   addCollection,
   toggleShowModal,
   removeCollection,
+  navigation,
 }) => (
   <View style={s.container}>
     <FlatList
@@ -41,7 +42,7 @@ const CollectionsScreen = ({
       ListFooterComponent={collections.length === 0 ? undefined : (
         <Separator withBorderTop withBorderBottom={false} />
       )}
-      renderItem={({ item }) => <CollectionItem remove={removeCollection} {...item} />}
+      renderItem={({ item }) => <CollectionItem remove={removeCollection} onPress={() => navigation.navigate('Collection', { collection: item })} {...item} />}
     />
 
     <Modal

@@ -5,13 +5,17 @@ import {
   FeedScreen,
   CollectionsScreen,
   SettingsScreen,
+  CollectionScreen,
 } from '../screens';
 
 import Drawer from './components/Drawer/Drawer';
 
 const rootRoutes = {
   [screens.Feed]: {
-    screen: StackNavigator({ init: { screen: FeedScreen } }),
+    screen: StackNavigator({
+      init: { screen: FeedScreen },
+      [screens.Collection]: { screen: CollectionScreen },
+    }),
   },
   [screens.Collections]: {
     screen: StackNavigator({ init: { screen: CollectionsScreen } }),

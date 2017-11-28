@@ -4,4 +4,5 @@ export default {
   Feed: 'Feed',
   Settings: 'Settings',
   Collections: 'Collections',
+  Collection: 'Collection',
 };
