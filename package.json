@@ -46,6 +46,7 @@
     "react": "16.0.0-beta.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
     "react-native-modal": "^4.1.1",
+    "react-native-search-box": "0.0.13",
     "react-native-swipeout": "^2.3.1",
     "react-navigation": "^1.0.0-beta.21",
     "react-redux": "^5.0.6",

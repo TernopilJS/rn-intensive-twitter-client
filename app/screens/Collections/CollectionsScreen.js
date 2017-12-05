@@ -71,6 +71,7 @@ CollectionsScreen.propTypes = {
   addCollection: T.func,
   toggleShowModal: T.func,
   removeCollection: T.func,
+  navigation: T.object,
 };
 
 CollectionsScreen.navigationOptions = ({ navigation }) => ({

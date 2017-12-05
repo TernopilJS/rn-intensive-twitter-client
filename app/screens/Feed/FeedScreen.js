@@ -6,6 +6,7 @@ import {
   FlatList,
 } from 'react-native';
 import R from 'ramda';
+import SearchBox from 'react-native-search-box';
 import { MaterialIcons } from '@expo/vector-icons';
 import TweetItem from '../../components/TweetItem';
 import Separator from '../../components/Separator';
@@ -30,6 +31,8 @@ const FeedScreen = ({
       onSubmitEditing={searchTweets}
       style={[s.textInput]}
     />
+
+    <SearchBox />
 
     <FlatList
       data={tweets}

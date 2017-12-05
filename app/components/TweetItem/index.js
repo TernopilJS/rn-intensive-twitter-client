@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import T from 'prop-types';
 import { compose, withState, withProps, withHandlers } from 'recompose';
-import { Text, View, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import { Text, View, TouchableWithoutFeedback, TouchableHighlight, Animated } from 'react-native';
 import Modal from 'react-native-modal';
 import moment from 'moment';
 import { Entypo } from '@expo/vector-icons';
@@ -19,6 +19,8 @@ const calendar = {
   sameElse: 'DD/MM/YYYY',
 };
 
+const animatedOpacity = new Animated.Value(1);
+
 const TweetItem = ({
   text,
   createdAt,
@@ -31,6 +33,8 @@ const TweetItem = ({
   setShowModal,
   collections,
   isCollection,
+  showOpacity,
+  hideOpacity,
 }) => (
   <View style={s.container}>
     <View style={s.left}>
@@ -57,8 +61,12 @@ const TweetItem = ({
       </View>
       <View style={s.buttonsContainer}>
 
-        <TouchableWithoutFeedback onPress={removeFromCollection}>
-          <View style={s.button}>
+        <TouchableWithoutFeedback
+          onPress={removeFromCollection}
+          onPressIn={showOpacity}
+          onPressOut={hideOpacity}
+        >
+          <Animated.View style={[s.button, { opacity: animatedOpacity }]}>
             <Text style={s.buttonText}>
               {isCollection ? 'Remove from collection' : 'Add to collection'}
             </Text>
@@ -68,7 +76,7 @@ const TweetItem = ({
               hitSlop={8}
               color={colors.black}
             />
-          </View>
+          </Animated.View>
         </TouchableWithoutFeedback>
       </View>
     </View>
@@ -99,6 +107,8 @@ TweetItem.propTypes = {
   addToCollection: T.func,
   removeFromCollection: T.func,
   isCollection: T.bool,
+  showOpacity: T.func,
+  hideOpacity: T.func,
 };
 
 const mapStateToProps = state => ({
@@ -129,6 +139,28 @@ const enhance = compose(
       } else {
         props.setShowModal(true);
       }
+    },
+  }),
+  withHandlers({
+    showOpacity: () => () => {
+      Animated.timing(
+        animatedOpacity,
+        {
+          toValue: 0.4,
+          duration: 300,
+          useNativeDriver: true,
+        },
+      ).start();
+    },
+    hideOpacity: () => () => {
+      Animated.timing(
+        animatedOpacity,
+        {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
+        },
+      ).start();
     },
   }),
 );

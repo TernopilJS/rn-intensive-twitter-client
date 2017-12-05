@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { LayoutAnimation } from 'react-native';
 import { compose, withHandlers, withState, hoistStatics } from 'recompose';
 import { collectionsSelectors, collectionsActions } from '../../modules/collections';
 import setParamsOnDidMount from '../../utils/enhancers/setParamOnDidMount';
@@ -18,9 +19,14 @@ const enhance = compose(
   withHandlers({
     toggleShowModal: props => () => props.setShowModal(!props.showModal),
     addCollection: props => () => {
+      LayoutAnimation.easeInEaseOut();
       props.addToCollection(props.collectionName);
       props.setCollectionName('');
       props.setShowModal(false);
+    },
+    removeCollection: props => (id) => {
+      LayoutAnimation.easeInEaseOut();
+      props.removeCollection(id);
     },
   }),
   setParamsOnDidMount('toggleShowModal'),
