@@ -6,6 +6,7 @@
   "private": true,
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "devDependencies": {
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "babel-eslint": "^8.0.2",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
@@ -36,22 +37,22 @@
     ]
   },
   "dependencies": {
-    "@expo/vector-icons": "^6.2.0",
-    "buffer": "^5.0.8",
-    "expo": "^22.0.0",
-    "moment": "^2.18.1",
-    "prop-types": "^15.5.10",
-    "ramda": "^0.25.0",
-    "react": "16.0.0-beta.5",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
-    "react-native-modal": "^4.1.1",
-    "react-native-swipeout": "^2.3.1",
-    "react-navigation": "^1.0.0-beta.15",
-    "react-redux": "^5.0.6",
-    "recompose": "^0.26.0",
-    "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
-    "redux-persist": "^5.4.0",
-    "redux-thunk": "^2.2.0"
+    "@expo/vector-icons": "6.2.0",
+    "buffer": "5.0.8",
+    "expo": "31.0.4",
+    "moment": "2.18.1",
+    "prop-types": "15.6.2",
+    "ramda": "0.25.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.1.tar.gz",
+    "react-native-modal": "4.1.1",
+    "react-native-swipeout": "2.3.1",
+    "react-navigation": "1.0.0-beta.15",
+    "react-redux": "5.0.6",
+    "recompose": "0.26.0",
+    "redux": "3.7.2",
+    "redux-actions": "2.2.1",
+    "redux-thunk": "2.2.0",
+    "redux-persist": "^5.4.0"
   }
 }
